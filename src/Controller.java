@@ -10,7 +10,7 @@ public class Controller {
     }
 
 
-    public void updateView()
+    public void update()
     {
 
     }
