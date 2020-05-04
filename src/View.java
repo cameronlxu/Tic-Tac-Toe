@@ -96,10 +96,10 @@ public class View extends JFrame {
     public void changeTurn(boolean player1_turn) {
     	if (player1_turn == true) {
         	turn.setText("Player 2 Turn: O");
-        	player1_turn = false;
+        	this.player1_turn = false;
         } else {
         	turn.setText("Player 1 Turn: X");
-        	player1_turn = true;
+        	this.player1_turn = true;
         }
     }
 
