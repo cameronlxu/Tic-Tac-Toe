@@ -4,7 +4,6 @@ public class Model {
     private String[][] currentBoard;
     private String[][] prevBoard;
     private String player;
-    private int playerID;
     private View view;
 
     public Model()
@@ -15,7 +14,6 @@ public class Model {
     public void start()
     {
         player = "X";
-        playerID = 1;
         currentBoard = new String[3][3];
         for(int i = 0; i < currentBoard.length; i ++)
             for(int j = 0; j < currentBoard.length; j ++){
@@ -28,11 +26,9 @@ public class Model {
     {
         if(player.equals("X")) {
             player = "O";
-            playerID = 2;
         }
         else if(player.equals("O")) {
             player = "X";
-            playerID = 1;
         }
     }
     public String[][] getCurrentBoard() {
@@ -61,7 +57,7 @@ public class Model {
     public void setValue(int x, int y)
     {
         prevBoard = currentBoard;
-        if(playerID % 2 != 0)
+        if(player.equals("X"))
             currentBoard[x][y] = "X";
         else
             currentBoard[x][y] = "O";

@@ -1,7 +1,5 @@
-import java.awt.*;
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +12,6 @@ public class Controller {
     {
         this.model = model;
         this.view = view;
-
         startScreen();
     }
     public void startScreen() {
@@ -44,16 +41,14 @@ public class Controller {
     }
     public void start_game()
     {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
         if (getColor() == 1) {
-            view.setBackground(Color.RED);
+            view.setColor(Color.RED);
         } else if (getColor() == 2){
-            view.setBackground(Color.BLUE);
+            view.setColor(Color.BLUE);
         }
-        frame.add(view);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,300);
-        frame.setVisible(true);
+        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.setVisible(true);
     }
     public ActionListener choose_color(final int chosen_color) {
         return new ActionListener() {
