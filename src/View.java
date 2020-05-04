@@ -1,42 +1,8 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package project;
 
-public class View extends JPanel{
-    private Model model;
-    private JButton[][] board;
-    private JButton undo;
-
-    public View(Model model)
-    {
-        this.model = model;
-        setUp();
+public class View {
+    public static void main(String args[]) {
+        Model team16 = new Model();
     }
-
-    //initial setup of board
-    public void setUp()
-    {
-        board = new JButton[3][3];
-
-        for(int i = 0; i < board.length; i ++)
-            for(int j = 0; j < board[i].length; j ++)
-            {
-                board[i][j] = new JButton();
-                board[i][j].setText("");
-                board[i][j].addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent actionEvent) {
-
-                    }
-                });
-                this.add(board[i][j]);
-            }
-    }
-
-    //Updates the view of the board
-    public void update()
-    {
-    }
-
-
+    
 }
