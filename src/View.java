@@ -3,25 +3,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class View extends JPanel{
+public class View extends JPanel {
     private Model model;
     private JButton[][] board;
     private JButton undo;
 
-    public View(Model model)
-    {
+    public View(Model model) {
         this.model = model;
         setUp();
     }
 
     //initial setup of board
-    public void setUp()
-    {
+    public void setUp() {
         board = new JButton[3][3];
-        this.setLayout(new GridLayout(3,3));
-        for(int i = 0; i < board.length; i ++)
-            for(int j = 0; j < board[i].length; j ++)
-            {
+        this.setLayout(new GridLayout(3, 3));
+        for (int i = 0; i < board.length; i++)
+            for (int j = 0; j < board[i].length; j++) {
                 int tempi = i;
                 int tempj = j;
                 board[i][j] = new JButton();
@@ -30,7 +27,7 @@ public class View extends JPanel{
                     public void actionPerformed(ActionEvent actionEvent) {
                         board[tempi][tempj].setText(model.getPlayer());
                         board[tempi][tempj].setEnabled(false);
-                        model.setValue(tempi,tempj);
+                        model.setValue(tempi, tempj);
                         model.setNextPlayer();
                     }
                 });
@@ -38,13 +35,12 @@ public class View extends JPanel{
             }
     }
 
-    public void gameEnd()
-    {
+    public void gameEnd() {
         System.out.println("Game End");
     }
+
     //Updates the view of the board
-    public void update()
-    {
+    public void update() {
 
     }
 
@@ -55,11 +51,7 @@ public class View extends JPanel{
         JFrame frame = new JFrame();
         frame.add(view);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,300);
+        frame.setSize(300, 300);
         frame.setVisible(true);
-
     }
-
-
-
 }

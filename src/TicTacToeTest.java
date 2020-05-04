@@ -4,6 +4,5 @@ public class TicTacToeTest {
         View view = new View(model);
         model.setView(view);
         Controller controller = new Controller(model, view);
-
     }
 }
