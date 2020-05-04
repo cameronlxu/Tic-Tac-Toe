@@ -7,6 +7,7 @@ public class View extends JFrame {
     private Model model;
     private JButton[][] board;
     private Color background;
+    private boolean player1_turn;
 
     public View(Model model) {
         this.model = model;
@@ -22,7 +23,12 @@ public class View extends JFrame {
         JPanel sidePanel = new JPanel(new FlowLayout());
         //sidePanel.setBackground(Color.BLACK);
         sidePanel.add(new JButton("Undo"));
-        sidePanel.add(new JTextArea("Player Turn"));
+        
+        // JLabel for displaying whose turn it is
+        JLabel turn = new JLabel("Player 1 Turn: X");
+        sidePanel.add(turn);
+        player1_turn = true;
+        
         this.add(gameBoard, BorderLayout.NORTH);
         this.add(sidePanel,BorderLayout.CENTER);
         board = new JButton[3][3];
@@ -40,6 +46,14 @@ public class View extends JFrame {
                         board[tempi][tempj].setEnabled(false);
                         model.setValue(tempi, tempj);
                         model.setNextPlayer();
+                        
+                        if (player1_turn == true) {
+                        	turn.setText("Player 2 Turn: O");
+                        	player1_turn = false;
+                        } else {
+                        	turn.setText("Player 1 Turn: X");
+                        	player1_turn = true;
+                        }
                     }
                 });
                 gameBoard.add(board[i][j]);
@@ -54,9 +68,9 @@ public class View extends JFrame {
 
     public void gameEnd() {
         System.out.println("Game End");
+        JFrame end = new JFrame("Winner!");
+        
     }
-
-
 
     //Updates the view of the board
     public void update() {
