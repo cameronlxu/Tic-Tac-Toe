@@ -40,7 +40,7 @@ public class View extends JPanel{
 
     public void gameEnd()
     {
-        System.out.println("Game End");
+
     }
     //Updates the view of the board
     public void update()
@@ -52,9 +52,10 @@ public class View extends JPanel{
         Model model = new Model();
         View view = new View(model);
         model.setView(view);
-        JFrame frame = new JFrame();
+        JPanel frame = new JPanel();
+        frame.setLayout(new BoxLayout(frame, BoxLayout.X_AXIS));
         frame.add(view);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new JButton("Hello"));
         frame.setSize(300,300);
         frame.setVisible(true);
 

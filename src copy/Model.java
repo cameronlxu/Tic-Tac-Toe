@@ -52,12 +52,6 @@ public class Model {
     {
         this.view = view;
     }
-
-    public void undo()
-    {
-        currentBoard = prevBoard;
-        view.update();
-    }
     public void setValue(int x, int y)
     {
         prevBoard = currentBoard;
