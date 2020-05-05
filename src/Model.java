@@ -15,11 +15,12 @@ public class Model {
     {
         player = "X";
         currentBoard = new String[3][3];
+        prevBoard = new String[3][3];
         for(int i = 0; i < currentBoard.length; i ++)
             for(int j = 0; j < currentBoard.length; j ++){
                 currentBoard[i][j] = "";
             }
-        prevBoard = currentBoard;
+        setBoard(prevBoard,currentBoard);
     }
 
     public void setNextPlayer()
@@ -51,27 +52,40 @@ public class Model {
 
     public void undo()
     {
-        currentBoard = prevBoard;
+        setBoard(currentBoard,prevBoard);
         view.update();
     }
     public void setValue(int x, int y)
     {
-        prevBoard = currentBoard;
+        setBoard(prevBoard,currentBoard);
         if(player.equals("X"))
             currentBoard[x][y] = "X";
         else
             currentBoard[x][y] = "O";
-        if(!hasWinner())
-            view.update();
-        else
-            view.gameEnd();
+
+        if(hasWinner())
+            view.gameEnd("Winner");
+        else if(boardFull())
+            view.gameEnd("Game Ended in Tie");
+
         System.out.println(Arrays.deepToString(currentBoard));
+        System.out.println(Arrays.deepToString(prevBoard));
     }
     public boolean hasWinner()
     {
         return checkDiagonal() || checkRow();
     }
 
+    public boolean boardFull()
+    {
+        int count = 0;
+        for(int i = 0; i < currentBoard.length; i ++)
+            for(int j = 0; j < currentBoard[i].length; j ++)
+                if(!currentBoard[i][j].equals(""))
+                    count ++;
+
+        return count == 9;
+    }
     public boolean checkDiagonal()
     {
         int rightDiagonal = 0;
@@ -80,7 +94,7 @@ public class Model {
         {
             if (currentBoard[i][i].equals(player))
                 rightDiagonal++;
-            else if (currentBoard[currentBoard.length - 1][i].equals(player))
+            if (currentBoard[currentBoard.length - 1-i][i].equals(player))
                 leftDiagonal++;
         }
         return rightDiagonal == 3 || leftDiagonal == 3;
@@ -97,5 +111,12 @@ public class Model {
                 return true;
         }
         return false;
+    }
+    //deep copy of a2 to a1
+    public void setBoard(String[][] a1, String[][] a2)
+    {
+        for(int i = 0; i < a1.length; i ++)
+            for(int j = 0; j < a1[i].length; j ++)
+                a1[i][j] = a2[i][j];
     }
 }

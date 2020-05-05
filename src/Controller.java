@@ -41,7 +41,6 @@ public class Controller {
     }
     public void start_game()
     {
-        //JFrame frame = new JFrame();
         if (getColor() == 1) {
             view.setColor(Color.RED);
         } else if (getColor() == 2){
