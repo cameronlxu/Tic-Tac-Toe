@@ -38,6 +38,7 @@ public class View extends JFrame {
         
         // JLabel to display whose turn it is
         turn = new JLabel("Player 1 Turn: X");
+        turn.setFont(font);
         sidePanel.add(turn);
         player1_turn = true;
         
