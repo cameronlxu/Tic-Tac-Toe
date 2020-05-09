@@ -71,15 +71,16 @@ public class Model {
     public void undo()
     {
         setUndo();
-        if(!Arrays.deepEquals(currentBoard,prevBoard))
-            setNextPlayer();
+
         if(p1Undo <= 3 && p2Undo <= 3)
         {
+            if(!Arrays.deepEquals(currentBoard,prevBoard))
+                setNextPlayer();
             setBoard(currentBoard, prevBoard);
             view.update();
         }
         else
-            System.out.println("Out of Undos");
+            System.out.println(player);
     }
     public void setValue(int x, int y)
     {
@@ -146,4 +147,5 @@ public class Model {
             for(int j = 0; j < a1[i].length; j ++)
                 a1[i][j] = a2[i][j];
     }
+
 }
