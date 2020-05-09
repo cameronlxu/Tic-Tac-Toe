@@ -27,7 +27,8 @@ public class View extends JFrame {
         JButton undo = new JButton("Undo");
         undo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                model.undo();
+                if(!model.hasWinner() && !model.boardFull())
+                    model.undo();
             }
         });
         sidePanel.add(undo);
