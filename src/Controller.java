@@ -1,14 +1,16 @@
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller {
     private Model model;
     private View view;
-    private int color;
-    private JFrame style_select;
+    private String font;
+    
+    private JFrame color_select;
+    private JFrame font_select;
     private BoardFormatter formatter;
+    
     public Controller(Model model, View view)
     {
         this.model = model;
@@ -16,40 +18,68 @@ public class Controller {
         startScreen();
     }
     public void startScreen() {
-        style_select = new JFrame("Choose a color!");
-        style_select.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	color_select = new JFrame("Choose a color!");
+    	color_select.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton red = new JButton("Red");
-        red.setBounds(0, 0, 150, 100);
-        red.addActionListener(
-                choose_color(new RedFormatter())
-        );
+        red.setBounds(0, 0, 200, 100);
+        red.addActionListener(choose_color(new RedFormatter()));
+        
         JButton blue = new JButton("Blue");
-        blue.setBounds(0, 100, 150, 100);
-        blue.addActionListener(choose_color(new BlueFormatter())
-        );
+        blue.setBounds(0, 100, 200, 100);
+        blue.addActionListener(choose_color(new BlueFormatter()));
 
-        style_select.add(red);
-        style_select.add(blue);
-        style_select.setSize(150, 220);
-        style_select.setLayout(null);
-        style_select.setVisible(true);
+        color_select.add(red);
+        color_select.add(blue);
+        color_select.setSize(200, 220);
+        color_select.setLayout(null);
+        color_select.setVisible(true);
+    }
+    
+    public void font_select() {
+    	font_select = new JFrame("Choose a Font!");
+    	font_select.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	
+    	JButton timesRoman = new JButton("Times New Roman");
+    	timesRoman.setBounds(0,0,200,100);
+    	timesRoman.addActionListener(choose_font("TimesRoman"));
+    	
+    	JButton chalkboard = new JButton("Chalkboard");
+    	chalkboard.setBounds(0,100,200,100);
+    	chalkboard.addActionListener(choose_font("Chalkboard"));
+    	
+    	font_select.add(timesRoman);
+    	font_select.add(chalkboard);
+    	font_select.setSize(200, 220);
+    	font_select.setLayout(null);
+    	font_select.setVisible(true);
     }
 
     public void start_game()
     {
-        view.format(formatter);
+        view.format(formatter, font);
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         view.setVisible(true);
     }
+    
     public ActionListener choose_color(final BoardFormatter format) {
         return new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 formatter = format;
-                style_select.dispose();
-                start_game();
+                color_select.dispose();
+                font_select();
             }
         };
+    }
+    
+    public ActionListener choose_font(String font_style) {
+    	return new ActionListener() {
+    		public void actionPerformed(ActionEvent event) {
+    			font = font_style;
+    			font_select.dispose();
+    			start_game();
+    		}
+    	};
     }
 
 }

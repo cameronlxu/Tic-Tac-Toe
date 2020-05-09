@@ -112,6 +112,7 @@ public class Model {
         }
         return false;
     }
+    
     //deep copy of a2 to a1
     public void setBoard(String[][] a1, String[][] a2)
     {
