@@ -117,5 +117,11 @@ public class View extends JFrame {
 
     //Updates the view of the board
     public void update() {
+        for (int i = 0; i < board.length; i++)
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j].setText(model.getCurrentBoard()[i][j]);
+                board[i][j].setEnabled(model.getCurrentBoard()[i][j].equals(""));
+            }
+        changeTurn();
     }
 }

@@ -52,6 +52,8 @@ public class Model {
 
     public void undo()
     {
+        if(!Arrays.deepEquals(currentBoard,prevBoard))
+            setNextPlayer();
         setBoard(currentBoard,prevBoard);
         view.update();
     }
