@@ -5,6 +5,8 @@ public class Model {
     private String[][] prevBoard;
     private String player;
     private View view;
+    private int p1Undo;
+    private int p2Undo;
 
     public Model()
     {
@@ -50,12 +52,34 @@ public class Model {
         this.view = view;
     }
 
+    public void resetUndo()
+    {
+        if(player.equals("X"))
+            p2Undo = 0;
+        else
+            p1Undo = 0;
+    }
+
+    public void setUndo()
+    {
+        if(player.equals("X"))
+            p1Undo ++;
+        else
+            p2Undo++;
+    }
+
     public void undo()
     {
+        setUndo();
         if(!Arrays.deepEquals(currentBoard,prevBoard))
             setNextPlayer();
-        setBoard(currentBoard,prevBoard);
-        view.update();
+        if(p1Undo <= 3 && p2Undo <= 3)
+        {
+            setBoard(currentBoard, prevBoard);
+            view.update();
+        }
+        else
+            System.out.println("Out of Undos");
     }
     public void setValue(int x, int y)
     {

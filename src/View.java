@@ -60,6 +60,7 @@ public class View extends JFrame {
                         if(!model.hasWinner() && !model.boardFull())
                         {
                             model.setNextPlayer();
+                            model.resetUndo();
                             changeTurn();
                         }
                     }
