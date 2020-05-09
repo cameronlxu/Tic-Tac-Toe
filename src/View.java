@@ -9,8 +9,6 @@ public class View extends JFrame {
     private JButton[][] board;
     private Color background;
     private Font font;
-    private boolean player1_turn;
-    private JFrame winner;
     private JLabel turn;
 
     public View(Model model) {
@@ -88,24 +86,6 @@ public class View extends JFrame {
             for(int j = 0; j < board[i].length; j++)
                 if(board[i][j].isEnabled())
                     board[i][j].setEnabled(false);
-    }
-
-    public void gameEnd(boolean player1_turn) {
-    	// Check to see who won
-    	if (player1_turn == true) {
-    		turn.setText("Player 1 Wins!");
-    	} else {
-    		turn.setText("Player 2 Wins!");
-    	}
-    	
-    	// disable the rest of the buttons because the game has ended
-    	for(int i = 0; i < board.length; i++) {
-    		for(int j = 0; j < board[i].length; j++) {
-    			if(board[i][j].isEnabled() == true) {
-    				board[i][j].setEnabled(false);
-    			}
-    		}
-    	}	
     }
     
     public void changeTurn()
