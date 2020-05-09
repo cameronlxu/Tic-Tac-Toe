@@ -1,5 +1,3 @@
-//package project;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +25,7 @@ public class View extends JFrame {
         JPanel gameBoard = new JPanel(new GridLayout(3,3));
         gameBoard.setBackground(background);
         JPanel sidePanel = new JPanel(new FlowLayout());
-        //sidePanel.setBackground(Color.BLACK);
+        
         JButton undo = new JButton("Undo");
         undo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -40,7 +38,6 @@ public class View extends JFrame {
         turn = new JLabel("Player 1 Turn: X");
         turn.setFont(font);
         sidePanel.add(turn);
-        player1_turn = true;
         
         this.add(gameBoard, BorderLayout.NORTH);
         this.add(sidePanel,BorderLayout.CENTER);
@@ -59,17 +56,7 @@ public class View extends JFrame {
                         board[tempi][tempj].setText(model.getPlayer());
                         board[tempi][tempj].setEnabled(false);
                         model.setValue(tempi, tempj);
-                        
-                        // Check to see if there is a winner, if not switch to next player
-                        /*
-                        if (model.hasWinner() == true) {
-                        	gameEnd(player1_turn);
-                        } else {
-	                        model.setNextPlayer();
-	                        changeTurn(player1_turn);
-                        }
 
-                         */
                         if(!model.hasWinner() && !model.boardFull())
                         {
                             model.setNextPlayer();
@@ -81,10 +68,10 @@ public class View extends JFrame {
             }
     }
 
-    public void format(BoardFormatter formatter)
+    public void format(BoardFormatter formatter, String font_style)
     {
         background = formatter.formatColor();
-        font = formatter.formatText();
+        font = formatter.formatText(font_style);
         setUp();
     }
     
@@ -117,25 +104,15 @@ public class View extends JFrame {
     				board[i][j].setEnabled(false);
     			}
     		}
-    	}
-    	
+    	}	
     }
+    
     public void changeTurn()
     {
         if(model.getPlayer().equals("X"))
             turn.setText("Player 1 Turn: X");
         else
             turn.setText("Player 2 Turn: O");
-    }
-    // Changes the label with every turn
-    public void changeTurn(boolean player1_turn) {
-    	if (player1_turn == true) {
-        	turn.setText("Player 2 Turn: O");
-        	this.player1_turn = false;
-        } else {
-        	turn.setText("Player 1 Turn: X");
-        	this.player1_turn = true;
-        }
     }
 
     //Updates the view of the board
