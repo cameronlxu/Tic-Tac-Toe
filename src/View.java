@@ -10,6 +10,7 @@ public class View extends JFrame {
     private Model model;
     private JButton[][] board;
     private Color background;
+    private Font font;
     private boolean player1_turn;
     private JFrame winner;
     private JLabel turn;
@@ -51,6 +52,7 @@ public class View extends JFrame {
                 board[i][j] = new JButton();
                 board[i][j].setPreferredSize(new Dimension(100,100));
                 board[i][j].setText("");
+                board[i][j].setFont(font);
                 board[i][j].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent actionEvent) {
                         board[tempi][tempj].setText(model.getPlayer());
@@ -78,9 +80,10 @@ public class View extends JFrame {
             }
     }
 
-    public void setColor(Color color)
+    public void format(BoardFormatter formatter)
     {
-        background = color;
+        background = formatter.formatColor();
+        font = formatter.formatText();
         setUp();
     }
     
@@ -92,13 +95,10 @@ public class View extends JFrame {
         else
             turn.setText("Player 2 Wins!");
 
-        for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[i].length; j++) {
-                if(board[i][j].isEnabled()) {
+        for(int i = 0; i < board.length; i++)
+            for(int j = 0; j < board[i].length; j++)
+                if(board[i][j].isEnabled())
                     board[i][j].setEnabled(false);
-                }
-            }
-        }
     }
 
     public void gameEnd(boolean player1_turn) {

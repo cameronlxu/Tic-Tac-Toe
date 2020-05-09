@@ -8,6 +8,7 @@ public class Controller {
     private View view;
     private int color;
     private JFrame style_select;
+    private BoardFormatter formatter;
     public Controller(Model model, View view)
     {
         this.model = model;
@@ -21,11 +22,11 @@ public class Controller {
         JButton red = new JButton("Red");
         red.setBounds(0, 0, 150, 100);
         red.addActionListener(
-                choose_color(1)
+                choose_color(new RedFormatter())
         );
         JButton blue = new JButton("Blue");
         blue.setBounds(0, 100, 150, 100);
-        blue.addActionListener(choose_color(2)
+        blue.addActionListener(choose_color(new BlueFormatter())
         );
 
         style_select.add(red);
@@ -35,24 +36,16 @@ public class Controller {
         style_select.setVisible(true);
     }
 
-    public int getColor()
-    {
-        return color;
-    }
     public void start_game()
     {
-        if (getColor() == 1) {
-            view.setColor(Color.RED);
-        } else if (getColor() == 2){
-            view.setColor(Color.BLUE);
-        }
+        view.format(formatter);
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         view.setVisible(true);
     }
-    public ActionListener choose_color(final int chosen_color) {
+    public ActionListener choose_color(final BoardFormatter format) {
         return new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                color = chosen_color;
+                formatter = format;
                 style_select.dispose();
                 start_game();
             }
