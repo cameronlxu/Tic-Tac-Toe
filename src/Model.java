@@ -66,8 +66,8 @@ public class Model {
             p2Undo ++;
         else
             p1Undo++;
-        System.out.println(p1Undo);
-        System.out.println(p2Undo);
+        System.out.println("P1: " + p1Undo);
+        System.out.println("P2: " + p2Undo);
     }
 
     public void undo()
