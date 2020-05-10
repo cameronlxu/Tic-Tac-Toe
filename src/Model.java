@@ -83,15 +83,18 @@ public class Model {
     {
         if(p1Undo < 3 && p2Undo < 3)
         {
-            setUndo();
-            
+
+            if(!Arrays.deepEquals(currentBoard,prevBoard)) {
+                setUndo();
+                setNextPlayer();
+            }
+
             if(p1Undo == 3 || p2Undo == 3) {
                 view.disableUndo();
                 undoCount++;
             }
             
-            if(!Arrays.deepEquals(currentBoard,prevBoard))
-                setNextPlayer();
+
             setBoard(currentBoard, prevBoard);
             view.update();
         }
