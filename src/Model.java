@@ -55,25 +55,26 @@ public class Model {
     public void resetUndo()
     {
         if(player.equals("X"))
-            p2Undo = 0;
-        else
             p1Undo = 0;
+        else
+            p2Undo = 0;
     }
 
     public void setUndo()
     {
         if(player.equals("X"))
-            p1Undo ++;
+            p2Undo ++;
         else
-            p2Undo++;
+            p1Undo++;
+        System.out.println(p1Undo);
+        System.out.println(p2Undo);
     }
 
     public void undo()
     {
-        setUndo();
-
-        if(p1Undo <= 3 && p2Undo <= 3)
+        if(p1Undo < 3 && p2Undo < 3)
         {
+            setUndo();
             if(!Arrays.deepEquals(currentBoard,prevBoard))
                 setNextPlayer();
             setBoard(currentBoard, prevBoard);
