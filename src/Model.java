@@ -7,6 +7,7 @@ public class Model {
     private View view;
     private int p1Undo;
     private int p2Undo;
+    private int undoCount;
 
     public Model()
     {
@@ -54,6 +55,13 @@ public class Model {
 
     public void resetUndo()
     {
+        if(undoCount != 1) {
+            view.enableUndo();
+            undoCount = 0;
+        } else {
+            undoCount++;
+        }
+        
         if(player.equals("X"))
             p1Undo = 0;
         else
@@ -63,9 +71,10 @@ public class Model {
     public void setUndo()
     {
         if(player.equals("X"))
-            p2Undo ++;
+            p2Undo++;
         else
             p1Undo++;
+        System.out.println("Undo Button Pressed");
         System.out.println("P1: " + p1Undo);
         System.out.println("P2: " + p2Undo);
     }
@@ -75,13 +84,20 @@ public class Model {
         if(p1Undo < 3 && p2Undo < 3)
         {
             setUndo();
+            
+            if(p1Undo == 3 || p2Undo == 3) {
+                view.disableUndo();
+                undoCount++;
+            }
+            
             if(!Arrays.deepEquals(currentBoard,prevBoard))
                 setNextPlayer();
             setBoard(currentBoard, prevBoard);
             view.update();
         }
-        else
+        else {
             System.out.println(player);
+        }
     }
     public void setValue(int x, int y)
     {
