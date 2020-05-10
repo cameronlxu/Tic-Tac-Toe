@@ -10,6 +10,7 @@ public class View extends JFrame {
     private Color background;
     private Font font;
     private JLabel turn;
+    private JButton undo;
 
     public View(Model model) {
         this.model = model;
@@ -24,7 +25,7 @@ public class View extends JFrame {
         gameBoard.setBackground(background);
         JPanel sidePanel = new JPanel(new FlowLayout());
         
-        JButton undo = new JButton("Undo");
+        undo = new JButton("Undo");
         undo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 if(!model.hasWinner() && !model.boardFull())
@@ -95,6 +96,14 @@ public class View extends JFrame {
             turn.setText("Player 1 Turn: X");
         else
             turn.setText("Player 2 Turn: O");
+    }
+    
+    public void disableUndo() {
+        undo.setEnabled(false);
+    }
+    
+    public void enableUndo() {
+        undo.setEnabled(true);
     }
 
     //Updates the view of the board
