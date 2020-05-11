@@ -14,6 +14,7 @@ public class Model {
         start();
     }
 
+    //Initialization of variables
     public void start()
     {
         player = "X";
@@ -26,6 +27,7 @@ public class Model {
         setBoard(prevBoard,currentBoard);
     }
 
+    //Switch to next player
     public void setNextPlayer()
     {
         if(player.equals("X")) {
@@ -53,6 +55,7 @@ public class Model {
         this.view = view;
     }
 
+    //Reset player's undo count
     public void resetUndo()
     {
         if(undoCount != 1) {
@@ -68,6 +71,7 @@ public class Model {
             p2Undo = 0;
     }
 
+    //Increment player's undo count for turn
     public void setUndo()
     {
         if(player.equals("X"))
@@ -79,6 +83,7 @@ public class Model {
         System.out.println("P2: " + p2Undo);
     }
 
+    //Undo last move if player has undo's left
     public void undo()
     {
         if(p1Undo < 3 && p2Undo < 3)
@@ -102,6 +107,8 @@ public class Model {
             System.out.println(player);
         }
     }
+
+    //Sets value at coordinates (x,y) to current player's symbol
     public void setValue(int x, int y)
     {
         setBoard(prevBoard,currentBoard);
@@ -116,11 +123,14 @@ public class Model {
         System.out.println(Arrays.deepToString(currentBoard));
         System.out.println(Arrays.deepToString(prevBoard));
     }
+
+    //Checks if winner is on board
     public boolean hasWinner()
     {
         return checkDiagonal() || checkRow();
     }
 
+    //Checks if board is full (tie)
     public boolean boardFull()
     {
         int count = 0;
@@ -131,6 +141,8 @@ public class Model {
 
         return count == 9;
     }
+
+    //Checks for possible diagonal winners
     public boolean checkDiagonal()
     {
         int rightDiagonal = 0;
@@ -146,6 +158,7 @@ public class Model {
 
     }
 
+    //Checks for possible row/column winners
     public boolean checkRow()
     {
         for(int i = 0; i < currentBoard.length; i ++)

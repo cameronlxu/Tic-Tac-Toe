@@ -15,7 +15,7 @@ public class View extends JFrame {
         this.model = model;
         this.setSize(new Dimension(300, 450));
         this.background = Color.BLUE;
-        setUp();
+        //setUp();
     }
 
     //initial setup of board
@@ -56,13 +56,15 @@ public class View extends JFrame {
         return board;
     }
 
+    //sets formatting variables
     public void format(BoardFormatter formatter, String font_style)
     {
         background = formatter.formatColor();
         font = formatter.formatText(font_style);
         setUp();
     }
-    
+
+    //At end of game, disable board and output winner
     public void gameEnd(String message) {
         if(!model.hasWinner())
             turn.setText(message);
@@ -78,7 +80,8 @@ public class View extends JFrame {
 
         disableUndo();
     }
-    
+
+    //Set text to player's turn
     public void changeTurn()
     {
         if(model.getPlayer().equals("X"))

@@ -17,6 +17,8 @@ public class Controller {
         this.view = view;
         startScreen();
     }
+
+
     public void startScreen() {
     	color_select = new JFrame("Choose a color!");
     	color_select.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
