@@ -49,19 +49,6 @@ public class View extends JFrame {
                 board[i][j].setPreferredSize(new Dimension(100,100));
                 board[i][j].setText("");
                 board[i][j].setFont(font);
-//                board[i][j].addActionListener(new ActionListener() {
-//                    public void actionPerformed(ActionEvent actionEvent) {
-//                        //board[tempi][tempj].setText(model.getPlayer());
-//                        //board[tempi][tempj].setEnabled(false);
-//                        model.setValue(tempi, tempj);
-//                        if(!model.hasWinner() && !model.boardFull())
-//                        {
-//                            model.setNextPlayer();
-//                            model.resetUndo();
-//                            changeTurn();
-//                        }
-//                    }
-//                });
                 gameBoard.add(board[i][j]);
             }
     }
@@ -89,6 +76,8 @@ public class View extends JFrame {
             for(int j = 0; j < board[i].length; j++)
                 if(board[i][j].isEnabled())
                     board[i][j].setEnabled(false);
+
+        disableUndo();
     }
     
     public void changeTurn()
