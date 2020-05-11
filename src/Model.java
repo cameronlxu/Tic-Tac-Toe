@@ -105,15 +105,13 @@ public class Model {
     public void setValue(int x, int y)
     {
         setBoard(prevBoard,currentBoard);
-        if(player.equals("X"))
-            currentBoard[x][y] = "X";
-        else
-            currentBoard[x][y] = "O";
-
+        currentBoard[x][y] = player;
+        view.update();
         if(hasWinner())
             view.gameEnd("Winner");
         else if(boardFull())
             view.gameEnd("Game Ended in Tie");
+
 
         System.out.println(Arrays.deepToString(currentBoard));
         System.out.println(Arrays.deepToString(prevBoard));

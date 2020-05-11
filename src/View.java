@@ -53,10 +53,9 @@ public class View extends JFrame {
                 board[i][j].setFont(font);
                 board[i][j].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent actionEvent) {
-                        board[tempi][tempj].setText(model.getPlayer());
-                        board[tempi][tempj].setEnabled(false);
+                        //board[tempi][tempj].setText(model.getPlayer());
+                        //board[tempi][tempj].setEnabled(false);
                         model.setValue(tempi, tempj);
-
                         if(!model.hasWinner() && !model.boardFull())
                         {
                             model.setNextPlayer();
