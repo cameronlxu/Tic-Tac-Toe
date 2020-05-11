@@ -58,6 +58,22 @@ public class Controller {
     public void start_game()
     {
         view.format(formatter, font);
+        for (int i = 0; i < model.getCurrentBoard().length; i++)
+            for (int j = 0; j < model.getCurrentBoard()[i].length; j++) {
+                int tempi = i;
+                int tempj = j;
+                view.getBoard()[i][j].addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        model.setValue(tempi, tempj);
+                        if (!model.hasWinner() && !model.boardFull()) {
+                            model.setNextPlayer();
+                            model.resetUndo();
+                            view.changeTurn();
+                        }
+                    }
+                });
+            }
+
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         view.setVisible(true);
     }

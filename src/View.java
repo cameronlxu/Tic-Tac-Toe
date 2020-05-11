@@ -45,27 +45,29 @@ public class View extends JFrame {
 
         for (int i = 0; i < board.length; i++)
             for (int j = 0; j < board[i].length; j++) {
-                int tempi = i;
-                int tempj = j;
                 board[i][j] = new JButton();
                 board[i][j].setPreferredSize(new Dimension(100,100));
                 board[i][j].setText("");
                 board[i][j].setFont(font);
-                board[i][j].addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        //board[tempi][tempj].setText(model.getPlayer());
-                        //board[tempi][tempj].setEnabled(false);
-                        model.setValue(tempi, tempj);
-                        if(!model.hasWinner() && !model.boardFull())
-                        {
-                            model.setNextPlayer();
-                            model.resetUndo();
-                            changeTurn();
-                        }
-                    }
-                });
+//                board[i][j].addActionListener(new ActionListener() {
+//                    public void actionPerformed(ActionEvent actionEvent) {
+//                        //board[tempi][tempj].setText(model.getPlayer());
+//                        //board[tempi][tempj].setEnabled(false);
+//                        model.setValue(tempi, tempj);
+//                        if(!model.hasWinner() && !model.boardFull())
+//                        {
+//                            model.setNextPlayer();
+//                            model.resetUndo();
+//                            changeTurn();
+//                        }
+//                    }
+//                });
                 gameBoard.add(board[i][j]);
             }
+    }
+
+    public JButton[][] getBoard() {
+        return board;
     }
 
     public void format(BoardFormatter formatter, String font_style)
