@@ -20,14 +20,14 @@ No installation required! All that needs to be done is cloning the repository!
 4. Play the game!
 
 ## Game Walkthrough
-<img src="http://www.giphy.com/gifs/uDebdiS6xdwCg50oHz" width=250><br>
 - Selecting a background color, then selecting a font!
+![Alt Text](https://media.giphy.com/media/uDebdiS6xdwCg50oHz/giphy.gif)
 
-<img src="http://www.giphy.com/gifs/vkP70w5kW0S0zzp4KR" width=250><br>
 - Using the UNDO function. Each player gets 3 UNDOs per game!
+![UNDO Function](https://media.giphy.com/media/vkP70w5kW0S0zzp4KR/giphy.mp4)
 
-<img src="http://www.giphy.com/gifs/HrISRDoYqGUtp275vJ" width=250><br>
 - Winning a game!
+![Winning](https://media.giphy.com/media/HrISRDoYqGUtp275vJ/giphy.mp4)
 
 ## Support
 
